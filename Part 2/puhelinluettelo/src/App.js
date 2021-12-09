@@ -1,49 +1,75 @@
-import React, { useState } from 'react'
-import Names from './Components/Names'
+import React, { useState } from "react";
+import Names from "./Components/Names";
+import Filter from "./Components/Filter";
+import PersonForm from "./Components/PersonForm";
 
 const App = () => {
-
-
   const [persons, setPersons] = useState([
-    { name: 'Arto Hellas', number: '040-123456' },
-    { name: 'Ada Lovelace', number: '39-44-5323523' },
-    { name: 'Dan Abramov', number: '12-43-234345' },
-    { name: 'Mary Poppendieck', number: '39-23-6423122' }
-  ])
+    { name: "Arto Hellas", number: "040-123456" },
+    { name: "Ada Lovelace", number: "39-44-5323523" },
+    { name: "Dan Abramov", number: "12-43-234345" },
+    { name: "Mary Poppendieck", number: "39-23-6423122" },
+  ]);
 
-  const [newName, setNewName] = useState('')
+  const [newName, setNewName] = useState("");
+  const [newNum, setNewNum] = useState("");
+  const [newFilter, setNewFilter] = useState("");
 
-  const testFunct = (event) => {
-    event.preventDefault()
-    if(persons.findIndex(item => item.name === document.getElementById("test").value) === -1){
-      setPersons([...persons, {name:document.getElementById("test").value}])
-      setNewName("")
+  const submitFunction = (event) => {
+    event.preventDefault();
+    if (
+      persons.findIndex(
+        (item) => item.name === document.getElementById("name").value
+      ) === -1
+    ) {
+      setPersons([
+        ...persons,
+        {
+          name: document.getElementById("name").value,
+          number: document.getElementById("num").value,
+        },
+      ]);
+      setNewName("");
+      setNewNum("");
+    } else {
+      alert(
+        `${document.getElementById("name").value} is already added to phonebook`
+      );
     }
-    else{
-      alert(document.getElementById("test").value + " is on the list already.")
-    }
-  }
+  };
 
-  const inputValueChange = (item) => {
-    setNewName(...item.target.name)
-  }
+  const inputNameChange = (item) => {
+    setNewName(item.target.value);
+  };
+  const inputNumChange = (item) => {
+    setNewNum(item.target.value);
+    console.log(newNum);
+  };
+  const inputFilterChange = (item) => {
+    setNewFilter(item.target.value);
+  };
 
   return (
     <div>
       <h2>Phonebook</h2>
-      <form onSubmit={testFunct}>
-        <div>
-          name: <input type="text" value={newName} onChange={inputValueChange} id={"test"}/>
-        </div>
-        <div>
-          <button type="submit" >add</button>
-        </div>
-      </form>
+      <Filter filterValue={newFilter} filterInput={inputFilterChange} />
+      <h2>Add a new</h2>
+      <PersonForm
+        nameValue={newName}
+        nameChangeFunction={inputNameChange}
+        numValue={newNum}
+        numChangeFunction={inputNumChange}
+        submit={submitFunction}
+      />
       <h2>Numbers</h2>
-      <Names persons={persons}/>
+      <Names
+        persons={persons.filter(
+          (item) =>
+            item.name.toLowerCase().includes(newFilter.toLowerCase()) === true
+        )}
+      />
     </div>
-  )
+  );
+};
 
-}
-
-export default App
+export default App;
