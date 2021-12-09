@@ -4,14 +4,16 @@ const Names = ({ persons }) => {
   return (
     <div>
       <table>
-        {persons.map((item, index) => {
-          return (
-            <tr key={index}>
-              <td>{item.name}</td>
-              <td>{item.number}</td>
-            </tr>
-          );
-        })}
+        <tbody>
+          {persons.map((item, index) => {
+            return (
+              <tr key={index}>
+                <td>{item.name}</td>
+                <td>{item.number}</td>
+              </tr>
+            );
+          })}
+        </tbody>
       </table>
     </div>
   );

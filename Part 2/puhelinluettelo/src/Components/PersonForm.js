@@ -1,5 +1,3 @@
-import react from "react";
-
 const PersonForm = ({
   nameValue,
   nameChangeFunction,
