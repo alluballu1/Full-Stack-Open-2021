@@ -1,6 +1,6 @@
 import React from "react";
 
-const Names = ({ persons }) => {
+const Names = ({ persons, deletion }) => {
   return (
     <div>
       <table>
@@ -10,6 +10,11 @@ const Names = ({ persons }) => {
               <tr key={index}>
                 <td>{item.name}</td>
                 <td>{item.number}</td>
+                <td>
+                  <button onClick={() => deletion(item.id, item.name)}>
+                    Delete
+                  </button>
+                </td>
               </tr>
             );
           })}
