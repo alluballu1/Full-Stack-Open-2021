@@ -6,4 +6,6 @@ Part 0:
 </br>
 Part 1: 15/15
 </br>
-Part 2: 11/20
+Part 2: 20/20
+</br>
+Part 3: 0/22
