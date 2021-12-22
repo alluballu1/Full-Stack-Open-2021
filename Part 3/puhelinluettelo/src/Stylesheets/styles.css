@@ -1,0 +1,40 @@
+.addmessage {
+  background-color: rgb(98, 199, 68);
+  width: fit-content;
+  display: block;
+  align-content: center;
+  padding: 5px;
+  padding-left: 60px;
+  padding-right: 60px;
+  margin-top: 10px;
+  border-radius: 20px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: rgb(0, 124, 17);
+}
+.errormessage {
+  background-color: rgba(218, 0, 0, 0.897);
+  width: fit-content;
+  display: block;
+  align-content: center;
+  padding: 5px;
+  padding-left: 60px;
+  padding-right: 60px;
+  margin-top: 10px;
+  border-radius: 20px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: rgb(119, 14, 0);
+}
+.text {
+  color: rgb(0, 0, 0);
+  display: flex;
+  border-radius: 20px;
+  width: fit-content;
+  align-self: center;
+  padding: 5px;
+  font-size: 24px;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-family: Arial, Helvetica, sans-serif;
+}

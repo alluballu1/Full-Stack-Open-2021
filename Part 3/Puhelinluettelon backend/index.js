@@ -1,7 +1,10 @@
 const express = require("express");
 const app = express();
-app.use(express.json());
 var morgan = require("morgan");
+const cors = require("cors");
+
+app.use(cors());
+app.use(express.json());
 app.use(
   morgan(function (tokens, req, res) {
     if (tokens.method(req, res) === "POST") {
@@ -83,13 +86,13 @@ app.get("/api/persons/:id", (request, response) => {
 app.delete("/api/persons/:id", (request, response) => {
   const id = Number(request.params.id);
   items = persons.filter((item) => item.id !== id);
-
+  persons = items;
   response.status(204).end();
 });
 app.post("/api/persons", (request, response) => {
   const body = request.body;
 
-  if (body.number === undefined || body.name === undefined) {
+  if ((body.number === undefined) | "" || (body.name === undefined) | "") {
     return response.status(400).json({
       error: "content missing",
     });
