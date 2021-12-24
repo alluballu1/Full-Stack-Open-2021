@@ -40,7 +40,6 @@ const App = () => {
       const newPerson = {
         name: document.getElementById("name").value,
         number: document.getElementById("num").value,
-        id: persons[persons.length - 1].id + 1,
       };
       const tempName = document.getElementById("name").value;
       phoneBookStore.create(newPerson).then(() => {

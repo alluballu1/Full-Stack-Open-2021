@@ -1,0 +1,10 @@
+{
+  "configurations": [
+    {
+      "type": "pwa-msedge",
+      "name": "https://immense-springs-28914.herokuapp.com/",
+      "request": "launch",
+      "url": "https://immense-springs-28914.herokuapp.com/"
+    }
+  ]
+}

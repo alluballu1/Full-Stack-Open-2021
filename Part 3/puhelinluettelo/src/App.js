@@ -40,22 +40,29 @@ const App = () => {
       const newPerson = {
         name: document.getElementById("name").value,
         number: document.getElementById("num").value,
-        id: persons[persons.length - 1].id + 1,
       };
       const tempName = document.getElementById("name").value;
-      phoneBookStore.create(newPerson).then(() => {
+      phoneBookStore.create(newPerson).then((data) => {
+        console.log(data);
+        const tempPerson = {
+          name: data.data.name,
+          number: data.data.number,
+          id: data.data.id,
+        };
+        setPersons([...persons, tempPerson]);
+        setNewName("");
+        setNewNum("");
         messageFunct(tempName, "add");
       });
-      setPersons([...persons, newPerson]);
-      setNewName("");
-      setNewNum("");
     } else {
       if (
         window.confirm(
           `${
             document.getElementById("name").value
           } is already added to phonebook, do you want to update the number?`
-        )
+        ) &&
+        document.getElementById("name") !== "" &&
+        document.getElementById("num") !== ""
       ) {
         const newnumber = document.getElementById("num").value;
         const indexOf = persons.findIndex(
@@ -69,16 +76,16 @@ const App = () => {
       }
     }
   };
+
+  // changed the index splicing to filtration
   const deletionFunct = (item, name) => {
+    console.log(item);
+    setPersons(persons.filter((element) => element.id !== item));
     if (window.confirm("Delete " + name + "?")) {
       phoneBookStore
         .deleteNum(item)
         .then((response) => console.log(response.statusText))
         .catch((err) => messageFunct(name, "missing"));
-      const tempArray = [...persons];
-      const indexOf = tempArray.indexOf(item);
-      tempArray.splice(indexOf, 1);
-      setPersons(tempArray);
     }
   };
 
