@@ -73,6 +73,8 @@ test("Testing that posting without a title or url will return an error code", as
   await api.post("/api/blogs").send(blogNotitle).expect(400);
 });
 
-afterAll(() => {
-  mongoose.connection.close();
+afterAll(async () => {
+  await mongoose.connection.close();
 });
+
+// everything broke, due to tokens nothing works..
