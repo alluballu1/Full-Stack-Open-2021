@@ -2,6 +2,7 @@ require("dotenv").config();
 const blogsRouter = require("express").Router();
 const Blog = require("../models/blog");
 const User = require("../models/user");
+const jwt = require("jsonwebtoken");
 const { userExtractor } = require("../utils/middleware");
 
 blogsRouter.get("/", async (request, response, next) => {
@@ -15,12 +16,11 @@ blogsRouter.post("/", userExtractor, async (request, response, next) => {
     const decodedToken = request.user;
 
     if (!request.token || !decodedToken.id) {
-      return response.status(400).json({ error: "token missing or invalid" });
+      return response.status(401).json({ error: "token missing or invalid" });
     }
     const user = await User.findById(decodedToken.id);
-    console.log(user);
     const blog = new Blog(body);
-    blog.user = user._id;
+    body.user = user._id;
     if (!blog.title || !blog.url) {
       return response.status(400).end();
     }
@@ -36,7 +36,6 @@ blogsRouter.post("/", userExtractor, async (request, response, next) => {
 
 blogsRouter.delete("/:id", userExtractor, async (request, response, next) => {
   try {
-    console.log(request.body);
     const find = await Blog.findById(request.params.id);
     const decodedToken = request.user;
     if (decodedToken.id === find.user.toString()) {
@@ -51,6 +50,7 @@ blogsRouter.delete("/:id", userExtractor, async (request, response, next) => {
 });
 
 blogsRouter.put("/:id", async (request, response, next) => {
+  console.log(request.body, "dffsf");
   await Blog.findByIdAndUpdate(request.params.id, request.body, { new: true })
     .then((result) => response.status(200).json(result).end())
     .catch((error) => next(error));
