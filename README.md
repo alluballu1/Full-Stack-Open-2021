@@ -10,4 +10,8 @@ Part 2: 20/20
 </br>
 Part 3: 22/22
 </br>
-Part 4: 12/23
+Part 4: 22/23
+</br>
+Part 5: 22/22
+</br>
+Part 6: 0/21
