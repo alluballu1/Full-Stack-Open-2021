@@ -1,20 +1,25 @@
 const tempNotification = null;
+let notificationID;
 
-export const hideNotification = () => {
-  return {
-    type: "HIDE_NOTIFICATION",
-    data: null,
-  };
-};
-export const newNotification = (notification) => {
-  return {
-    type: "NEW_NOTIFICATION",
-    data: notification,
+export const newNotification = (notification, time) => {
+  return async (dispatch) => {
+    if (notificationID) {
+      clearTimeout(notificationID);
+    }
+    dispatch({
+      type: "NEW_NOTIFICATION",
+      data: notification,
+    });
+    notificationID = setTimeout(() => {
+      dispatch({
+        type: "HIDE_NOTIFICATION",
+        data: null,
+      });
+    }, 1000 * time);
   };
 };
 
 const notificationReducer = (state = tempNotification, action) => {
-  console.log(action.data);
   switch (action.type) {
     case "NEW_NOTIFICATION":
       return action.data;

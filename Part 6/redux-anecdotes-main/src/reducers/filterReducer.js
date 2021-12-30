@@ -8,7 +8,6 @@ export const changeValue = (item) => {
 };
 
 const filterReducer = (state = initialState, action) => {
-  console.log("please work");
   switch (action.type) {
     case "VALUE_CHANGE":
       return action.data;

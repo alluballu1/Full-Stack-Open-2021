@@ -1,14 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
+import { connect } from "react-redux";
 
-const Notification = () => {
-  const notifications = useSelector((state) => state.notifications);
-  /*   const [visible, setvisible] = useState(false); */
-
-  /*   useEffect(() => {
-    setvisible(true);
-    setTimeout(() => setvisible(false), 5000);
-  }, [notifications]); */
+const Notification = (props) => {
+  const notifications = props.notifications;
   const style = {
     border: "solid",
     padding: 10,
@@ -21,4 +15,12 @@ const Notification = () => {
   );
 };
 
-export default Notification;
+const mapStateToProps = (state) => {
+  return {
+    notifications: state.notifications,
+  };
+};
+
+const ConnectedNotifications = connect(mapStateToProps)(Notification);
+
+export default ConnectedNotifications;

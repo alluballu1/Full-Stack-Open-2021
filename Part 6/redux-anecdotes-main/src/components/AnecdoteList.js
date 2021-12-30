@@ -9,21 +9,15 @@ const AnecdoteList = () => {
   const anecdotesState = useSelector((state) => state.anecdotes);
   const filterState = useSelector((state) => state.filter);
   const dispatch = useDispatch();
-  let timeout;
   const likingFunct = (prop) => {
     dispatch(vote(prop));
-    clearTimeout(timeout);
-    dispatch(newNotification(`${prop.content} liked`));
-    timeout = setTimeout(() => {
-      dispatch(hideNotification());
-    }, 5000);
+    dispatch(newNotification(`${prop.content} liked`, 3));
   };
 
   return (
     <div>
       <h2>Anecdotes</h2>
 
-      <button onClick={() => console.log(anecdotesState)}>sdfdsfsf</button>
       {anecdotesState
         .filter((element) =>
           element.content.toLowerCase().includes(filterState.toLowerCase())
