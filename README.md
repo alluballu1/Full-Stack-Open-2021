@@ -22,4 +22,5 @@ Part 8: 22/26 (skipped subscriptions due to version difference and the amount of
 </br>
 Certification of completion:
 ![certificate of completion](https://studies.cs.helsinki.fi/stats/api/certificate/fullstackopen/en/2111f3f7b7f05ccd55ea4684c87cf3e0)
+![certificate of completion](https://studies.cs.helsinki.fi/stats/api/certificate/fs-graphql/en/732473978e2b262f132e7a12e15413e0)
 
