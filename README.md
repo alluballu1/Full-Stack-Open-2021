@@ -18,7 +18,8 @@ Part 6: 21/21
 </br>
 Part 7: 21/21
 </br>
+Part 8: 22/26 (skipped subscriptions)
+</br>
 Certification of completion:
 ![certificate of completion](https://studies.cs.helsinki.fi/stats/api/certificate/fullstackopen/en/2111f3f7b7f05ccd55ea4684c87cf3e0)
-</br>
-Part 8: 7/26
+
